@@ -25,12 +25,124 @@ The platform uses signed two's complement integer arithmetic with int and long p
 
 
 ## PROGRAM:
+EditText num1, num2;
+Button addBtn, subBtn, mulBtn, divBtn;
+TextView result;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+    num1 = findViewById(R.id.num1);
+    num2 = findViewById(R.id.num2);
+
+    addBtn = findViewById(R.id.addBtn);
+    subBtn = findViewById(R.id.subBtn);
+    mulBtn = findViewById(R.id.mulBtn);
+    divBtn = findViewById(R.id.divBtn);
+
+    result = findViewById(R.id.result);
+
+    addBtn.setOnClickListener(v -> operate('+'));
+    subBtn.setOnClickListener(v -> operate('-'));
+    mulBtn.setOnClickListener(v -> operate('*'));
+    divBtn.setOnClickListener(v -> operate('/'));
+}
+
+private void operate(char op) {
+
+    double n1 = Double.parseDouble(num1.getText().toString());
+    double n2 = Double.parseDouble(num2.getText().toString());
+
+    double res = 0;
+
+    switch (op) {
+
+        case '+':
+            res = n1 + n2;
+            break;
+
+        case '-':
+            res = n1 - n2;
+            break;
+
+        case '*':
+            res = n1 * n2;
+            break;
+
+        case '/':
+            if (n2 != 0)
+                res = n1 / n2;
+            else
+                res = 0;
+            break;
+    }
+
+    result.setText("Result: " + res);
+}
 
 
+<EditText
+    android:id="@+id/num1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Enter Number 1"
+    android:inputType="numberDecimal"/>
 
+<EditText
+    android:id="@+id/num2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Enter Number 2"
+    android:inputType="numberDecimal"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/addBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="+"/>
+
+    <Button
+        android:id="@+id/subBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="-"/>
+
+    <Button
+        android:id="@+id/mulBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="*"/>
+
+    <Button
+        android:id="@+id/divBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="/"/>
+
+</LinearLayout>
+
+<TextView
+    android:id="@+id/result"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Result:"
+    android:paddingTop="10dp"
+    android:textSize="18sp"/>
 
 ## OUTPUT:
 
+<img width="515" height="273" alt="image" src="https://github.com/user-attachments/assets/a8e41390-e0b5-473e-9ada-609113a20ca1" />
 
 
 
